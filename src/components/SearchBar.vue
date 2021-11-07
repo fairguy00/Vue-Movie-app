@@ -20,16 +20,22 @@
   </div>
 </template>
 <script>
+import axios from 'axios'
+
 export default {
   data() {
     return {
       title: "",
-      loading:false
+      loading: false
     };
   },
   methods:{
       searchMovies (){
           console.log("searchMovies")
+          axios.get(`http://www.omdbapi.com/?apikey=a08e2e9&s=${this.title}`)
+            .then( res => {
+              console.log(res)
+            })
       }
   }
 };
