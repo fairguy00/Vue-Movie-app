@@ -30,15 +30,11 @@ export default {
     };
   },
   methods:{
-      searchMovies (){
-          
-          axios.get(`http://www.omdbapi.com/?apikey=a08e2e9&s=${this.title}`)
-            .then( res => {
-              console.log(res)
-            }
-          )//promise - 비동기
-
-          console.log("searchMovies") //axios 보다 먼저 찍힘 > axis는 비동기클라이언트이기때문
+      async searchMovies (){
+          this.loading = true
+          const res = await axios.get(`http://www.omdbapi.com/?apikey=a08e2e9&s=${this.title}`)//promise객체반환 - 비동기
+          console.log(res.data)
+          this.loading = false //속도가 빠르므로 chrome 개발자도구 > network > 제한없음에서 느린3g로 변경
       }
   }
 };
