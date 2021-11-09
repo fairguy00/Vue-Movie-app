@@ -1,14 +1,29 @@
 <template>
-    <v-row>
+    <v-row
+        v-masonry
+        item-selector=".item">
+
+        <!-- 반복되는 아이템들 -->
         <v-col v-for="movie in movies"
             :key="movie.imdbID"
+            v-masonry-tile
+            class="item"
             cols="12"
             lg="3"
             md="3"
             sm="6">
-            <div>{{movie.Title}}</div>
-            <div>{{movie.Year}}</div>
-            <div>{{movie.Poster}}</div>
+            <v-card>
+                <v-img
+                    :src="movie.Poster"
+                    :alt="movie.Title"
+                    height="300"></v-img>
+                <v-card-title>
+                    {{movie.Title}}
+                </v-card-title>
+                <v-card-subtitle>
+                    {{movie.Year}}
+                </v-card-subtitle>
+            </v-card>
 
         </v-col>
     </v-row>
