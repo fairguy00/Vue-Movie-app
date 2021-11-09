@@ -57,7 +57,7 @@ export default {
       // }
 
       //위코드를 맵액션스로 실행 ... > 전개연산자 로 바인딩
-      ...mapActions('movies',[
+      ...mapActions('movie',[
         'searchMovies'
       ])
 

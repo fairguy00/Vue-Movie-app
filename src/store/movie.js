@@ -27,13 +27,13 @@ export default{
                 loading:true
             })
 
-            const res = await axios.get(`http://www.omdbapi.com/?apikey=a08e2e9&s=${this.title}`)//promise객체반환 - 비동기
-            console.log(res.data)
-            //res 값을 MovieList에서 사용
-            state.movie = res.data.Search
-
+            const res = await axios.get(`http://www.omdbapi.com/?apikey=a08e2e9&s=${state.title}`)//promise객체반환 - 비동기
+            
             //state.loading = false //속도가 빠르므로 chrome 개발자도구 > network > 제한없음에서 느린3g로 변경
-            commit('updateState',{
+            commit('updateState', {
+                //res 값을 MovieList에서 사용
+                //state.movie = res.data.Search //
+                movies : res.data.Search,
                 loading:false
             })
         }
