@@ -18,23 +18,44 @@ export default{
             Object.keys(payload).forEach(key =>{
                 state[key] = payload[key] //loading = true
             })
+        },
+        pushIntoMovies(state, movies) {
+            state.movies.push(...movies)//아이템단위로 push 할수있도록 전개연산자사용
         }
     },
-    actions:{//비동기처리가능, state의 값을 갱신하려면 mutations
-        async searchMovies ({state,commit}){
+    actions: {//비동기처리가능, state의 값을 갱신하려면 mutations
+        fetchMovies({ state, commit }, pageNum) {
+            return new Promise(async resolve => {
+                const res = await axios.get(`http://www.omdbapi.com/?apikey=a08e2e9&s=${state.title}&page=${pageNum}`)
+                commit('pushIntoMovies',res.data.Search)
+                resolve(res.data)//리졸브에 인수로 데이터를 넣으면 밖에서 반환받아 사용가능
+            })
+        },
+        async searchMovies ({commit,dispatch}){//actions 사용할땐 dispatch
             //state.loading = true
             commit('updateState',{
-                loading:true
+                loading: true,
+                movies:[]
             })
+            const { totalResults } = await dispatch('fetchMovies',1)
+            //const res = await axios.get(`http://www.omdbapi.com/?apikey=a08e2e9&s=${state.title}&page=1`)//promise객체반환 - 비동기
+            const pageLength = Math.ceil(totalResults / 10)
 
-            const res = await axios.get(`http://www.omdbapi.com/?apikey=a08e2e9&s=${state.title}`)//promise객체반환 - 비동기
-            
+            if (pageLength > 1) {
+                for (let i = 2; i <= pageLength; i += 1){
+                    if(i > 4) break
+                    // const resMore = await axios.get(`http://www.omdbapi.com/?apikey=a08e2e9&s=${state.title}&page=${i}`)
+                    // commit('pushIntoMovies', resMore.data.Search)
+                    await dispatch('fetchMovies', 1)
+                }
+            }
             //state.loading = false //속도가 빠르므로 chrome 개발자도구 > network > 제한없음에서 느린3g로 변경
             commit('updateState', {
                 //res 값을 MovieList에서 사용
                 //state.movie = res.data.Search //
-                movies : res.data.Search,
-                loading:false
+                //movies : res.data.Search,
+                
+                loading: false
             })
         }
     }
