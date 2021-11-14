@@ -30,6 +30,7 @@ export default {
   //     loading: false // state를 가져오려면 computed사용
   //   };
   // },
+  name: 'SearchBar',
   computed:{
     title: {
       // input이므로 양방향 바인딩 - 수정은 mutation 의 getter,setter 필요하다
