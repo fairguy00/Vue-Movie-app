@@ -34,7 +34,6 @@ export default{
                 commit('pushIntoMovies',res.data.Search)
                 //console.log("res.data: "+res.data)
             })
-            
         },
         async searchMovies ({commit,dispatch}){//actions 사용할땐 dispatch
             //state.loading = true

@@ -14,9 +14,9 @@
             sm="6">
             <v-card>
                 <v-img
-                    :src="movie.Poster"
+                    :src="posterSrc(movie.Poster)"
                     :alt="movie.Title"
-                    height="300"></v-img>
+                    :height="posterHeight(movie.Poster)"></v-img>
                 <v-card-title>
                     {{movie.Title}}
                 </v-card-title>
@@ -34,6 +34,14 @@ export default {
     computed:{
         movies(){
             return this.$store.state.movie.movies
+        }
+    },
+    methods:{
+        posterSrc(poster){
+            poster === 'N/A' ? '': poster
+        },
+        posterHeight(poster){
+            return poster === 'N/A' ? 100 : 300
         }
     }
 }
