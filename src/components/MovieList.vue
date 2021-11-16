@@ -38,7 +38,7 @@ export default {
     },
     methods:{
         posterSrc(poster){
-            poster === 'N/A' ? '': poster
+            return poster === 'N/A' ? '': poster
         },
         posterHeight(poster){
             return poster === 'N/A' ? 100 : 300

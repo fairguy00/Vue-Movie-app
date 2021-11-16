@@ -26,7 +26,7 @@ export default{
     actions: {//비동기처리가능, state의 값을 갱신하려면 mutations
         fetchMovies({state, commit}, pageNum) {
             return new Promise(async resolve => {
-                const res = await axios.get(`http://www.omdbapi.com/?apikey=a08e2e9&s=${state.title}&page=${pageNum}`)
+                const res = await axios.get(`https://www.omdbapi.com/?apikey=a08e2e9&s=${state.title}&page=${pageNum}`)
                 commit('pushIntoMovies', res.data.Search)
                 resolve(res.data)//리졸브에 인수로 데이터를 넣으면 밖에서 반환받아 사용가능
             })
