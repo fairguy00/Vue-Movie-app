@@ -4,7 +4,8 @@
         item-selector=".item">
 
         <!-- 반복되는 아이템들 -->
-        <v-col v-for="movie in movies"
+        <v-col
+            v-for="movie in movies"
             :key="movie.imdbID"
             v-masonry-tile
             class="item"
@@ -16,7 +17,11 @@
                 <v-img
                     :src="posterSrc(movie.Poster)"
                     :alt="movie.Title"
-                    :height="posterHeight(movie.Poster)"></v-img>
+                    :height="posterHeight(movie.Poster)">
+                    <template v-slot:placeholder>
+                        <div style="background: lightgray; height: 100%;"></div>
+                    </template>
+                </v-img>
                 <v-card-title>
                     {{movie.Title}}
                 </v-card-title>
@@ -24,7 +29,6 @@
                     {{movie.Year}}
                 </v-card-subtitle>
             </v-card>
-
         </v-col>
     </v-row>
 </template>
@@ -38,7 +42,8 @@ export default {
     },
     methods:{
         posterSrc(poster){
-            poster === 'N/A' ? '': poster
+            //console.log("posterSrc : "+poster)
+            return poster === 'N/A' ? '': poster
         },
         posterHeight(poster){
             return poster === 'N/A' ? 100 : 300
