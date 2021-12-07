@@ -33,6 +33,7 @@
 export default {
     computed:{
         movies(){
+            //해당부분을 테스트하기위해서 $store를 다가져오기보다는 Mocking처리하는게 좋다
             return this.$store.state.movie.movies
         }
     },
