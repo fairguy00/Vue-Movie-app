@@ -1,4 +1,5 @@
 module.exports = {
+
     // 파일 확장자를 지정하지 않은 경우, Jest가 검색할 확장자 목록입니다.
     // 일반적으로 많이 사용되는 모듈의 확장자를 지정합니다.
     moduleFileExtensions: [
