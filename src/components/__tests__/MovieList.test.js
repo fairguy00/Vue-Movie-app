@@ -29,7 +29,7 @@ describe('MovieList Component', ()=>{
         })
     })
     test('영화 제목 출력', () => {
-        console.log(wrapper.html())
+        //console.log(wrapper.html())
         expect(wrapper.find('v-card-title-stub').text()).toBe('영화 제목')
         
     })

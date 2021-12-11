@@ -32,7 +32,10 @@ export default {
   // },
   name: 'SearchBar',
   computed:{
-    title: {
+    // v-model 로 양방향바인딩
+    // title에 값이 들어갔을 때 set()을 통해 값을 갱신한다
+    // title 값은 get()을 통해 가져온다
+    title: { 
       // input이므로 양방향 바인딩 - 수정은 mutation 의 getter,setter 필요하다
       get(){
         return this.$store.state.movie.title
