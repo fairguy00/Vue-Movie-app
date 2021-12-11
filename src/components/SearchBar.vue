@@ -44,10 +44,10 @@ export default {
         this.$store.commit('movie/updateState',{
           title
         })
+      },
+      loading(){
+        return this.$store.state.movie.loading
       }
-    },
-    loading(){
-      return this.$store.state.movie.loading
     }
   },
 
