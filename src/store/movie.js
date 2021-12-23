@@ -6,7 +6,7 @@ export default{
     //사용 예 this.$store.dispatch('movies/searchMovies')
     namespaced : true,
 
-    //state는 데이터
+    //state는 데이터를 다루는 함수다
     state: () =>({
         title:'',
         loading: false,

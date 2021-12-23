@@ -1,12 +1,13 @@
-import { mount, createLocalVue } from "@vue/test-utils"
+import { mount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import Vuetify from 'vuetify'
-import store from '@/store'// 실제로 사용하는 스토어
-import SearchBar from '../SearchBar.vue'
+// 실제로 사용하는 스토어
+import store from '@/store'
+import SearchBar from '../SearchBar'
 
 const localVue = createLocalVue()
 localVue.use(Vuetify)
-//localVue.use(Vuex)
+localVue.use(Vuex)
 
 // 가짜 스토어 만들어서 사용할때
 // const store = new Vuex.Store({
